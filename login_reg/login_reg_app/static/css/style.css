@@ -1,8 +1,69 @@
 body {
-    background-color:pink;
+    background-color:rgb(233, 212, 204);
 }
 
 #wrapper {
-    max-width:600px;
-    margin:0px auto;
+    background-color:rgb(245, 242, 241);
+    max-width:800px;
+    margin:50px auto;
+    border:4px solid rgb(185, 131, 117);
+    border-radius:10px;
+    padding:10px;
+}
+
+#header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+}
+
+#post {
+    background-color:rgb(185, 131, 117);
+    color:rgb(245, 242, 241);
+    padding:20px;
+    border-radius:10px;
+}
+
+#posted_msg {
+    margin:50px 0px 20px 0px;
+    padding:20px;
+    border-radius:10px;
+}
+
+#posted_cmt {
+    padding:20px;
+    width:600px;
+    text-align:right;
+    margin-left:auto;
+    margin-left:0px;
+    border-radius:10px;
+}
+
+#comment_box {
+    display:flex;
+    justify-content:flex-end;
+}
+
+#post_comment_box {
+    display:flex;
+    justify-content:flex-end;
+}
+
+#post_a_cmt {
+    padding:10px 20px;
+    width:600px;
+    background-color:rgb(131, 115, 120);
+    color:rgb(245, 242, 241);
+    border-radius:10px;
+}
+
+#msg_btn {
+    background-color:rgb(209, 158, 145);
+    border-radius:5px;
+}
+
+#cmt_btn {
+    background-color:rgb(131, 115, 120);
+    border-radius:5px;
 }

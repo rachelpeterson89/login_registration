@@ -68,6 +68,7 @@ def login(request):
 
         # Push UserId into session and redirect
         request.session['user_id'] = user[0].id
+        print("iiiiiiiiiddddddd", request.session['user_id'])
         return redirect('/dashboard')
     else:
         return redirect('/')
@@ -78,7 +79,9 @@ def dashboard(request):
         return redirect('/')
     else:
         context = {
-            'user': User.objects.get(id=request.session['user_id'])
+            'user': User.objects.get(id=request.session['user_id']),
+            'all_the_messages': Message.objects.all(),
+            'all_the_comments': Comment.objects.all(),
         }
         return render(request, 'dashboard.html', context)
 
@@ -88,3 +91,25 @@ def logout(request):
     if 'user_id' in request.session:
         del request.session['user_id']
     return redirect('/')
+
+
+def post_message(request):
+    user = User.objects.get(id=request.session['user_id'])
+    print("this is my user", user)
+    Message.objects.create(message_content=request.POST['message'], message_user=User.objects.get(id=request.session['user_id']))
+    return redirect('/dashboard')
+
+
+def post_comment(request):
+    Comment.objects.create(comment_content=request.POST['comment'], comment_user=User.objects.get(id=request.session['user_id']), message=Message.objects.get(id=request.POST['message_id']))
+    return redirect('/dashboard')
+
+def delete_msg(request, message_id):
+    message_to_destroy = Message.objects.get(id=message_id)
+    message_to_destroy.delete() 
+    return redirect('/dashboard')
+
+def delete_cmt(request, comment_id):
+    comment_to_destroy = Comment.objects.get(id=comment_id)
+    comment_to_destroy.delete()
+    return redirect('/dashboard')
